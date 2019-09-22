@@ -2,6 +2,9 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation'
 
 import LoginScreen from './pages/LoginScreen';
+import SeriesScreen from './pages/SeriesScreen';
+import SerieDetailsScreen from './pages/SerieDetailsScreen';
+import SerieFormScreen from './pages/SerieFormScreen';
 
 const AppNavigator = createStackNavigator({
   'Login': { 
@@ -9,6 +12,24 @@ const AppNavigator = createStackNavigator({
     navigationOptions: {
       title: 'Login'
     }
+  },
+  Main: {
+    screen: SeriesScreen
+  },
+  'SerieFormScreen': {
+    screen: SerieFormScreen,
+    navigationOptions: {
+      title: 'Nova Série'
+    }
+  },
+  'SerieDetailsScreen': {
+    screen: SerieDetailsScreen,
+    navigationOptions: ({ navigation }) => {
+      const { serie } = navigation.state.params;
+      return {
+        title: serie.title
+      }
+    },
   },
 }, {
   defaultNavigationOptions: {
@@ -23,7 +44,6 @@ const AppNavigator = createStackNavigator({
       color: 'white',
       fontSize: 30,
       flexGrow: 1,
-      textAlign: 'center',
     }
   }
 });

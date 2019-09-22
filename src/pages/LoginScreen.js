@@ -51,6 +51,21 @@ class LoginPage extends React.Component {
         const { email, password } = this.state;
 
         this.props.tryLogin({ email, password })
+            .then(user  => {
+                if (user)
+                    return this.props.navigation.replace('Main');
+
+                this.setState({ 
+                    isLoading: false,
+                    message: ' '
+                });
+            })
+            .catch( error => {
+                this.setState({ 
+                    isLoading: false,
+                    message: this.getMessageByErrorCode(error.code)
+                });
+            });
     }
 
     getMessageByErrorCode(errorCode){
@@ -59,6 +74,8 @@ class LoginPage extends React.Component {
                 return 'Senha incorreta';
             case 'auth/user-not-found':
                 return 'Usuário não encontrado';
+            case 'auth/invalid-email':
+                return 'E-mail inválido'
             default:
                 return 'Erro desconhecido';
         }
@@ -96,6 +113,8 @@ class LoginPage extends React.Component {
                         placeholder="user@email.com" 
                         value={this.state.email}  
                         onChangeText={ value => this.onChangeHandler('email',value)}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
                     />
                 </FormRow>
                 <FormRow last>

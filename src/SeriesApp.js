@@ -16,7 +16,6 @@ const SeriesApp = prop => (
     <Provider store={store}>
       <Router />
     </Provider>
-);
-
+); 
 
 export default SeriesApp;

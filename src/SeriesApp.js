@@ -12,10 +12,10 @@ const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(reduxThunk)
 ));
 
-const GymApp = prop => (
+const SeriesApp = prop => (
     <Provider store={store}>
       <Router />
     </Provider>
 ); 
 
-export default GymApp;
+export default SeriesApp;

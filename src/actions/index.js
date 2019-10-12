@@ -1,3 +1,3 @@
 export * from './userActions';
-export * from './workoutFormActions';
-export * from './workoutActions';
+export * from './serieFormActions';
+export * from './seriesActions';

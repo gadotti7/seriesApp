@@ -1,35 +1,42 @@
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation'
 
-import LoginScreen from './pages/LoginScreen';
-import SeriesScreen from './pages/SeriesScreen';
-import SerieDetailsScreen from './pages/SerieDetailsScreen';
-import SerieFormScreen from './pages/SerieFormScreen';
+import LoginPage from './pages/LoginPage';
+import SeriesPage from './pages/SeriesPage';
+import SerieDetailPage from './pages/SerieDetailPage';
+import SerieFormPage from './pages/SerieFormPage';
 
 const AppNavigator = createStackNavigator({
-  'Login': { 
-    screen: LoginScreen,
+  'Login': {
+    screen: LoginPage,
     navigationOptions: {
-      title: 'Login'
-    }
+        title: 'Bem vindo!',
+  }
   },
-  Main: {
-    screen: SeriesScreen
+  'Main': {
+      screen: SeriesPage
   },
-  'SerieFormScreen': {
-    screen: SerieFormScreen,
-    navigationOptions: {
-      title: 'Nova Série'
-    }
-  },
-  'SerieDetailsScreen': {
-    screen: SerieDetailsScreen,
-    navigationOptions: ({ navigation }) => {
-      const { serie } = navigation.state.params;
-      return {
-        title: serie.title
+  'SerieForm': {
+      screen: SerieFormPage,
+      navigationOptions: ({ navigation }) => {
+          if (navigation.state.params && navigation.state.params.serieToEdit) {
+              return {
+                  title: navigation.state.params.serieToEdit.title,
+              }
+          }
+          return {
+              title: 'Nova série',
+          };
       }
-    },
+  },
+  'SerieDetail': {
+      screen: SerieDetailPage,
+      navigationOptions: ({ navigation }) => {
+          const { serie } = navigation.state.params;
+          return {
+              title: serie.title
+          }
+      }
   },
 }, {
   defaultNavigationOptions: {

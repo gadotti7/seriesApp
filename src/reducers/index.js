@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import userReducer from './userReducer'; 
-import SerieFormReducer from './serieFormReducer'; 
+import userReducer from './userReducer';
+import serieFormReducer from './serieFormReducer';
+import seriesReducer from './seriesReducer';
 
 export default combineReducers({
-    user: userReducer,
-    serieForm: SerieFormReducer,
-})
+	user: userReducer,
+	serieForm: serieFormReducer,
+	series: seriesReducer,
+});

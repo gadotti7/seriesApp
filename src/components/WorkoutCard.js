@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-const SerieCard = ({ serie, isFirstColumn, onPress }) => (
+const WorkoutCard = ({ workout, isFirstColumn, onPress }) => (
     <TouchableOpacity 
     onPress={onPress}    
     style={[
@@ -18,13 +18,13 @@ const SerieCard = ({ serie, isFirstColumn, onPress }) => (
 		<View style={styles.card}>
             <Image
                 source = {{
-                    uri: serie.img
+                    uri: workout.img
                 }}
                 aspectRatio={1}
                 resizeMode="cover"
                 />
             <View style={styles.cardTitleWrapper}>
-                <Text style={styles.cardTitle}>{serie.title}</Text>
+                <Text style={styles.cardTitle}>{workout.title}</Text>
             </View>
         </View>
     </TouchableOpacity>
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SerieCard;
+export default WorkoutCard;

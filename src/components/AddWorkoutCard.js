@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-const AddSerieCard = ({ serie, isFirstColumn, onPress }) => (
+const AddWorkoutCard = ({ serie, isFirstColumn, onPress }) => (
     <TouchableOpacity 
     onPress={onPress}    
     style={[
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AddSerieCard;
+export default AddWorkoutCard;

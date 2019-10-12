@@ -1,7 +1,7 @@
 import {
 	SET_FIELD,
-	SERIE_SAVED_SUCCESS,
-	SET_WHOLE_SERIE,
+	WORKOUT_SAVED_SUCCESS,
+	SET_WHOLE_WORKOUT,
 	RESET_FORM,
 } from '../actions';
 
@@ -20,10 +20,10 @@ export default function(state = INITIAL_STATE, action) {
 			const newState = { ...state };
 			newState[action.field] = action.value;
 			return newState;
-		case SET_WHOLE_SERIE:
-			return action.serie;
+		case SET_WHOLE_WORKOUT:
+			return action.workout;
 		case RESET_FORM:
-		case SERIE_SAVED_SUCCESS:
+		case WORKOUT_SAVED_SUCCESS:
 			return INITIAL_STATE;
 		default:
 			return state;

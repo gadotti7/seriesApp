@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './userReducer';
-import workoutFormReducer from './workoutFormReducer';
-import workoutReducer from './workoutReducer';
+import serieFormReducer from './serieFormReducer';
+import seriesReducer from './seriesReducer';
 
 export default combineReducers({
 	user: userReducer,
-	workoutForm: workoutFormReducer,
-	workout: workoutReducer,
+	serieForm: serieFormReducer,
+	series: seriesReducer,
 });

@@ -1,9 +1,9 @@
-import { SET_WORKOUT } from '../actions';
+import { SET_SERIES	} from '../actions';
 
 export default function(state = null, action) {
 	switch (action.type) {
-		case SET_WORKOUT:
-			return action.workout;
+		case SET_SERIES:
+			return action.series;
 		default:
 			return state;
 	}

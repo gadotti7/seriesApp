@@ -2,40 +2,41 @@ import React from 'react';
 import {
 	StyleSheet,
 	View,
+	Text,
 	FlatList,
 	ActivityIndicator,
 } from 'react-native';
-import WorkoutCard from '../components/WorkoutCard';
-import AddWorkoutCard from '../components/AddWorkoutCard';
+import SerieCard from '../components/SerieCard';
+import AddSerieCard from '../components/AddSerieCard';
 import { connect } from 'react-redux';
-import { watchWorkout } from '../actions';
+import { watchSeries } from '../actions';
 
 const isEven = number => number % 2 === 0;
 
-class WorkoutPage extends React.Component {
+class SeriesPage extends React.Component {
 	componentDidMount() {
-		this.props.watchWorkout();
+		this.props.watchSeries();
 	}
 
 	render() {
-		const { workout, navigation } = this.props;
-		if (workout === null) {
+		const { series, navigation } = this.props;
+		if (series === null) {
 			return <ActivityIndicator />;
 		}
 
 		return (
 			<View>
 				<FlatList
-					data={[...workout, { isLast: true }]}
+					data={[...series, { isLast: true }]}
 					renderItem={({ item, index }) => (
 						item.isLast
-							? <AddWorkoutCard
+							? <AddSerieCard
 								isFirstColumn={isEven(index)}
-								onPress={() => navigation.navigate('WorkoutForm')} />
-							: <WorkoutCard
-								workout={item}
+								onPress={() => navigation.navigate('SerieForm')} />
+							: <SerieCard
+								serie={item}
 								isFirstColumn={isEven(index)}
-								onPress={() => navigation.navigate('WorkoutDetail', { workout: item })}
+								onPress={() => navigation.navigate('SerieDetail', { serie: item })}
 							/>
 					)}
 					keyExtractor={item => item.id}
@@ -58,19 +59,19 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	const { workout } = state;
-	if (workout === null) {
-		return { workout }
+	const { series } = state;
+	if (series === null) {
+		return { series }
 	}
 
-	const keys = Object.keys(workout);
-	const workoutWithKeys = keys.map(id => {
-		return { ...workout[id], id }
+	const keys = Object.keys(series);
+	const seriesWithKeys = keys.map(id => {
+		return { ...series[id], id }
 	});
-	return { workout: workoutWithKeys };
+	return { series: seriesWithKeys };
 }
 
 export default connect(
 	mapStateToProps,
-	{ watchWorkout }
-)(WorkoutPage);
+	{ watchSeries }
+)(SeriesPage);

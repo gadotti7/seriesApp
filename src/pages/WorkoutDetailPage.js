@@ -9,37 +9,37 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { deleteSerie } from '../actions';
+import { deleteWorkout } from '../actions';
 
 import Line from '../components/Line';
 import LongText from '../components/LongText';
 
-class SerieDetailPage extends React.Component {
+class WorkoutDetailPage extends React.Component {
 	render() {
 		const { navigation } = this.props;
-		const { serie } = navigation.state.params;
+		const { workout } = navigation.state.params;
 
 		return (
 			<ScrollView>
 				{
-					serie.img64
+					workout.img64
 						?  <Image
 							style={styles.image}
 							source={{
-								uri: `data:image/jpeg;base64,${serie.img64}`
+								uri: `data:image/jpeg;base64,${workout.img64}`
 							}} />
 						: null
 				}
-				<Line label="Título" content={serie.title} />
-				<Line label="Gênero" content={serie.gender} />
-				<Line label="Nota" content={serie.rate} />
-				<LongText label="Descrição" content={serie.description} />
+				<Line label="Título" content={workout.title} />
+				<Line label="Gênero" content={workout.gender} />
+				<Line label="Nota" content={workout.rate} />
+				<LongText label="Descrição" content={workout.description} />
 
 				<View style={styles.button}>
 					<Button
 						title="Editar"
 						onPress={() => {
-							navigation.replace('SerieForm', { serieToEdit: serie })
+							navigation.replace('WorkoutForm', { workoutToEdit: workout })
 						}} />
 				</View>
 
@@ -48,7 +48,7 @@ class SerieDetailPage extends React.Component {
 						title="Deletar"
 						color="#FF0004FF"
 						onPress={async () => {
-							const hasDeleted = await this.props.deleteSerie(serie);
+							const hasDeleted = await this.props.deleteWorkout(workout);
 							if (hasDeleted) {
 								navigation.goBack();
 							}
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default connect(null, { deleteSerie })(SerieDetailPage);
+export default connect(null, { deleteWorkout })(WorkoutDetailPage);

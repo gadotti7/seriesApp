@@ -18,14 +18,14 @@ import { connect } from 'react-redux';
 import FormRow from '../components/FormRow';
 import {
 	setField,
-	saveWorkout,
-	setWholeWorkout,
+	saveSerie,
+	setWholeSerie,
 	resetForm,
 } from '../actions';
 
 import { Permissions, ImagePicker } from 'expo';
 
-class WorkoutFormPage extends React.Component {
+class SerieFormPage extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -35,10 +35,10 @@ class WorkoutFormPage extends React.Component {
 	}
 
 	componentDidMount() {
-		const { navigation, setWholeWorkout, resetForm } = this.props;
+		const { navigation, setWholeSerie, resetForm } = this.props;
 		const { params } = navigation.state;
-		if (params && params.workoutToEdit) {
-			return setWholeWorkout(params.workoutToEdit);
+		if (params && params.serieToEdit) {
+			return setWholeSerie(params.serieToEdit);
 		}
 		return resetForm();
 	}
@@ -54,8 +54,8 @@ class WorkoutFormPage extends React.Component {
 				onPress={async () => {
 					this.setState({ isLoading: true });
 					try {
-						const { saveWorkout, workoutForm, navigation } = this.props;
-						await saveWorkout(workoutForm);
+						const { saveSerie, serieForm, navigation } = this.props;
+						await saveSerie(serieForm);
 						navigation.goBack();
 					} catch (error) {
 						Alert.alert('Erro!', error.message);
@@ -99,9 +99,9 @@ class WorkoutFormPage extends React.Component {
 
 	render() {
 		const {
-			workoutForm,
+			serieForm,
 			setField,
-			saveWorkout,
+			saveSerie,
 			navigation
 		} = this.props;
 
@@ -115,16 +115,16 @@ class WorkoutFormPage extends React.Component {
 						<TextInput
 							style={styles.input}
 							placeholder="Título"
-							value={workoutForm.title}
+							value={serieForm.title}
 							onChangeText={value => setField('title', value)}
 						 />
 					</FormRow>
 
 					<FormRow>
-						{ workoutForm.img64
+						{ serieForm.img64
 							? <Image
 								source={{
-									uri: `data:image/jpeg;base64,${workoutForm.img64}`
+									uri: `data:image/jpeg;base64,${serieForm.img64}`
 								}}
 								style={styles.img} />
 							: null }
@@ -136,7 +136,7 @@ class WorkoutFormPage extends React.Component {
 
 					<FormRow>
 						<Picker
-							selectedValue={workoutForm.gender}
+							selectedValue={serieForm.gender}
 							onValueChange={itemValue => setField('gender', itemValue)}>
 
 							<Picker.Item label="Policial" value="Policial" />
@@ -148,11 +148,11 @@ class WorkoutFormPage extends React.Component {
 					<FormRow>
 						<View style={styles.sameRow}>
 							<Text>Nota:</Text>
-							<Text>{workoutForm.rate}</Text>
+							<Text>{serieForm.rate}</Text>
 						</View>
 						<Slider
 							onValueChange={value => setField('rate', value)}
-							value={workoutForm.rate}
+							value={serieForm.rate}
 							minimumValue={0}
 							maximumValue={100}
 							step={5} />
@@ -162,7 +162,7 @@ class WorkoutFormPage extends React.Component {
 						<TextInput
 							style={styles.input}
 							placeholder="Descrição"
-							value={workoutForm.description}
+							value={serieForm.description}
 							onChangeText={value => setField('description', value)}
 							numberOfLines={4}
 							multiline={true}
@@ -197,15 +197,15 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
 	return {
-		workoutForm: state.workoutForm
+		serieForm: state.serieForm
 	}
 }
 
 const mapDispatchToProps = {
 	setField,
-	saveWorkout,
-	setWholeWorkout,
+	saveSerie,
+	setWholeSerie,
 	resetForm,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkoutFormPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SerieFormPage);

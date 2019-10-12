@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Series",
-    "slug": "series",
+    "name": "MobileGym",
+    "slug": "MobileGym",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [

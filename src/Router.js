@@ -2,22 +2,22 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation'
 
 import LoginPage from './pages/LoginPage';
-import SeriesPage from './pages/SeriesPage';
-import SerieDetailPage from './pages/SerieDetailPage';
-import SerieFormPage from './pages/SerieFormPage';
+import WorkoutPage from './pages/WorkoutPage';
+import WorkoutDetailPage from './pages/WorkoutDetailPage';
+import WorkoutFormPage from './pages/WorkoutFormPage';
 
 const AppNavigator = createStackNavigator({
   'Login': {
     screen: LoginPage,
     navigationOptions: {
-        title: 'Bem vindo!',
+        title: 'Login!',
   }
   },
   'Main': {
-      screen: SeriesPage
+      screen: WorkoutPage,
   },
-  'SerieForm': {
-      screen: SerieFormPage,
+  'WorkoutForm': {
+      screen: WorkoutFormPage,
       navigationOptions: ({ navigation }) => {
           if (navigation.state.params && navigation.state.params.serieToEdit) {
               return {
@@ -25,12 +25,12 @@ const AppNavigator = createStackNavigator({
               }
           }
           return {
-              title: 'Nova série',
+              title: 'Novo Treino',
           };
       }
   },
-  'SerieDetail': {
-      screen: SerieDetailPage,
+  'WorkoutDetail': {
+      screen: WorkoutDetailPage,
       navigationOptions: ({ navigation }) => {
           const { serie } = navigation.state.params;
           return {
@@ -40,10 +40,10 @@ const AppNavigator = createStackNavigator({
   },
 }, {
   defaultNavigationOptions: {
-    title: "Series",
+    title: "MobileGym",
     headerTintColor: 'white',
     headerStyle:{
-      backgroundColor: '#9d00ff',
+      backgroundColor: '#00a33c',
       borderBottomWidth: 1,
       borderBottomColor: '#C5C5C5',
     },

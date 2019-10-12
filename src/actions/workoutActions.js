@@ -1,37 +1,37 @@
 import firebase from 'firebase';
 import { Alert } from 'react-native';
 
-export const SET_SERIES = 'SET_SERIES';
-const setSeries = series => ({
-	type: SET_SERIES,
-	series,
+export const SET_WORKOUT = 'SET_WORKOUT';
+const setWorkout = workout => ({
+	type: SET_WORKOUT,
+	workout,
 });
 
-export const watchSeries = () => {
+export const watchWorkout = () => {
 	const { currentUser } = firebase.auth();
 	return dispatch => {
 		firebase
 			.database()
-			.ref(`/users/${currentUser.uid}/series`)
+			.ref(`/users/${currentUser.uid}/workout`)
 			.on('value', snapshot => {
-				const series = snapshot.val();
+				const workout = snapshot.val();
 
-				if (!series) {
-					return dispatch(setSeries({}))
+				if (!workout) {
+					return dispatch(setWorkout({}))
 				}
 
-				const action = setSeries(series);
+				const action = setWorkout(workout);
 				dispatch(action)
 			});
 	}
 }
 
-export const deleteSerie = serie => {
+export const deleteSerie = workout => {
 	return dispatch => {
 		return new Promise((resolve, reject) => {
 			Alert.alert(
 				'Deletar',
-				`Deseja deletar a serie ${serie.title}`,
+				`Deseja deletar a workout ${workout.title}`,
 				[{
 					text: 'Não',
 					onPress: () => {
@@ -45,7 +45,7 @@ export const deleteSerie = serie => {
 						try {
 							await firebase
 								.database()
-								.ref(`/users/${currentUser.uid}/series/${serie.id}`)
+								.ref(`/users/${currentUser.uid}/workout/${workout.id}`)
 								.remove();
 							resolve(true);
 						} catch(e) {

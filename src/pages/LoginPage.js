@@ -30,13 +30,13 @@ class LoginPage extends React.Component {
 
 	componentDidMount() {
 		const config = {
-            apiKey: "AIzaSyCCZnn2ns2owETXWWSiio2fQJu3mXEVrG4",
-            authDomain: "seriesapp-2c78e.firebaseapp.com",
-            databaseURL: "https://seriesapp-2c78e.firebaseio.com",
-            projectId: "seriesapp-2c78e",
+			apiKey: "AIzaSyC7-NymNx8b6ud51UcGCxhofzRLPOi6xsY",
+            authDomain: "mobilegym-55357.firebaseapp.com",
+            databaseURL: "https://mobilegym-55357.firebaseio.com",
+            projectId: "mobilegym-55357",
             storageBucket: "",
-            messagingSenderId: "708491302982",
-            appId: "1:708491302982:web:c9d02e011b7459146f5247"
+            messagingSenderId: "865300766780",
+            appId: "1:865300766780:web:24150d9e264a568f7d2339"
 		};
 		firebase.initializeApp(config);
 	}
@@ -70,26 +70,28 @@ class LoginPage extends React.Component {
 	}
 
 	getMessageByErrorCode(errorCode) {
-		switch (errorCode) {
-			case 'auth/wrong-password':
-				return 'Senha incorreta';
-			case 'auth/user-not-found':
-				return 'Usuário não encontrado';
-			default:
-				return 'Erro desconhecido';
-		}
-	}
-
-	renderMessage() {
-		const { message } = this.state;
-		if (!message)
-			return null;
-
-		return (
-			<View>
-				<Text>{message}</Text>
-			</View>
-		);
+		switch(errorCode){
+            case 'auth/wrong-password':
+                return Alert.alert(
+                    'Login inválido',
+                        'Usuário/Senha inválido!');
+            case 'auth/user-not-found':
+                return Alert.alert(
+                    'Login inválido',
+                        'Usuário não encontrado!');
+            case 'auth/invalid-email':
+                return Alert.alert(
+                    'Login inválido',
+                        'E-mail inserido é inválido!');
+            case 'auth/user-disabled':
+                return Alert.alert(
+                    'Login inválido',
+                        'Usuário desabilitado!');
+            default:
+                return Alert.alert(
+                    'Login inválido',
+                        'Erro desconhecido, favor entrar em contato com o administrador!');
+        }
 	}
 
 	renderButton() {
@@ -98,6 +100,7 @@ class LoginPage extends React.Component {
 		return (
 			<Button
 				title="Entrar"
+				color= '#00a33c'
 				onPress={() => this.tryLogin()}/>
 		);
 	}
@@ -126,7 +129,6 @@ class LoginPage extends React.Component {
 				</FormRow>
 
 				{ this.renderButton() }
-				{ this.renderMessage() }
 			</View>
 		)
 	}
@@ -141,6 +143,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 5,
 		paddingRight: 5,
 		paddingBottom: 5,
+		borderRadius: 20,
 	},
 });
 

@@ -30,7 +30,7 @@ class LoginPage extends React.Component {
 
 	componentDidMount() {
 		const config = {
-            apiKey: "AIzaSyCCZnn2ns2owETXWWSiio2fQJu3mXEVrG4",
+			apiKey: "AIzaSyCCZnn2ns2owETXWWSiio2fQJu3mXEVrG4",
             authDomain: "seriesapp-2c78e.firebaseapp.com",
             databaseURL: "https://seriesapp-2c78e.firebaseio.com",
             projectId: "seriesapp-2c78e",

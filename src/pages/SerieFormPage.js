@@ -23,7 +23,9 @@ import {
 	resetForm,
 } from '../actions';
 
-import { Permissions, ImagePicker } from 'expo';
+
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions'
 
 class SerieFormPage extends React.Component {
 	constructor(props) {

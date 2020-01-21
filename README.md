@@ -2,7 +2,7 @@
   SeriesApp
 </h1>
 
-<p align="center"> 🚀 Series: Foi uma aplicação desenvolvida com os conhecimentos obtidos no curso <b>Construa aplicativos mobile do zero com React Native </b>;
+<p align="center"> Series: Foi uma aplicação desenvolvida com os conhecimentos obtidos no curso <b>Construa aplicativos mobile do zero com React Native </b>;
 
 ## Features
 Para este desenvolvimento foram utilizados:
